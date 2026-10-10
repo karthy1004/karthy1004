@@ -15,18 +15,18 @@ Principal Product Manager at **Qenta** · previously product at **Paytm** and **
 
 | Project | The problem | What you can verify in 3 minutes | Stack |
 |---|---|---|---|
-| [**evidence-review-engine**](https://github.com/karthy1004/evidence-review-engine) | Supply-chain due diligence where suppliers answer "yes" to everything | `python -m evidence_review demo`: a supplier with 12 "yes" answers scores 16/100 because its documents are expired, stale or issued to another company. 59 tests. An eval harness whose headline metric is *silent errors*. | Python · Pydantic · Claude API (optional) |
-| [**payments-reliability-lab**](https://github.com/karthy1004/payments-reliability-lab) | Payments that stay correct when the provider times out, webhooks repeat and clients double-click | `npm run demo`: one charge despite retries, a timed-out payment settled by webhook, a forged webhook rejected, and reconciliation catching an amount break. 59 tests. | TypeScript · Node 24 · Fastify · SQLite |
-| [**operon**](https://github.com/karthy1004/operon) | Job applications done for the candidate, with the candidate keeping a veto | Domain model for the full service lifecycle, Stripe test-mode checkout with exactly-once webhooks, approval engine with compare-and-set transitions. **Prototype, not launched.** | Next.js 16 · Prisma · Clerk · Stripe |
+| [**evidence-review-engine**](https://github.com/karthikbhumireddy/evidence-review-engine) | Supply-chain due diligence where suppliers answer "yes" to everything | `python -m evidence_review demo`: a supplier with 12 "yes" answers scores 16/100 because its documents are expired, stale or issued to another company. 59 tests. An eval harness whose headline metric is *silent errors*. | Python · Pydantic · Claude API (optional) |
+| [**payments-reliability-lab**](https://github.com/karthikbhumireddy/payments-reliability-lab) | Payments that stay correct when the provider times out, webhooks repeat and clients double-click | `npm run demo`: one charge despite retries, a timed-out payment settled by webhook, a forged webhook rejected, and reconciliation catching an amount break. 59 tests. | TypeScript · Node 24 · Fastify · SQLite |
+| [**operon**](https://github.com/karthikbhumireddy/operon) | Job applications done for the candidate, with the candidate keeping a veto | Domain model for the full service lifecycle, Stripe test-mode checkout with exactly-once webhooks, approval engine with compare-and-set transitions. **Prototype, not launched.** | Next.js 16 · Prisma · Clerk · Stripe |
 
 All three are clean-room builds with synthetic data. None contains employer code, data or methodology.
 
 ## How I work
 
 - **Claims need evidence.** In my due-diligence engine, an unbacked "yes" scores zero. My [skills matrix](docs/skills-evidence-matrix.md) applies the same rule to me.
-- **Design the failure path first.** A payment timeout means *unknown*, not *failed*. Getting that wrong is how customers are charged twice. [ADR-1](https://github.com/karthy1004/payments-reliability-lab/blob/main/docs/decisions.md)
-- **AI only where it can be measured against a baseline.** The LLM step must pass schema, consistency and grounding checks, and it is scored against a regex baseline on silent errors, not accuracy. [Eval results](https://github.com/karthy1004/evidence-review-engine/blob/main/evals/results/baseline.md)
-- **Write decisions down.** Every repo has ADRs recording what was chosen, what was rejected, and what it costs. [Example](https://github.com/karthy1004/operon/blob/main/docs/adr/0001-collapsed-self-serve-funnel.md)
+- **Design the failure path first.** A payment timeout means *unknown*, not *failed*. Getting that wrong is how customers are charged twice. [ADR-1](https://github.com/karthikbhumireddy/payments-reliability-lab/blob/main/docs/decisions.md)
+- **AI only where it can be measured against a baseline.** The LLM step must pass schema, consistency and grounding checks, and it is scored against a regex baseline on silent errors, not accuracy. [Eval results](https://github.com/karthikbhumireddy/evidence-review-engine/blob/main/evals/results/baseline.md)
+- **Write decisions down.** Every repo has ADRs recording what was chosen, what was rejected, and what it costs. [Example](https://github.com/karthikbhumireddy/operon/blob/main/docs/adr/0001-collapsed-self-serve-funnel.md)
 
 ## Background
 

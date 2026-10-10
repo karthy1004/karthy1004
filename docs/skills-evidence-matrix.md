@@ -1,6 +1,6 @@
 # Skills, and the evidence for each
 
-The rule I apply to suppliers in [evidence-review-engine](https://github.com/karthikbhumireddy/evidence-review-engine) applies here too: **a claim without evidence scores zero.**
+The rule I apply to suppliers in [evidence-review-engine](https://github.com/karthy1004/evidence-review-engine) applies here too: **a claim without evidence scores zero.**
 
 How to read this:
 
@@ -14,8 +14,8 @@ How to read this:
 
 | Skill | Where | Evidence | Depth | Confidence | What would show more |
 |---|---|---|---|---|---|
-| Payments product management | Qenta; earlier Paytm, Dineout (restaurant payments) | Self-reported. [payments-reliability-lab](https://github.com/karthikbhumireddy/payments-reliability-lab) shows I understand the failure modes behind payment requirements | Product ownership, not implementation of those employers' systems | Self-reported | A sanitised case study of a shipped payments decision |
-| Responsible-sourcing due diligence product | Qenta (Responsible Gold) | Self-reported. [evidence-review-engine](https://github.com/karthikbhumireddy/evidence-review-engine) is a clean-room model of the problem class | Domain modelling: evidence, risk scoring, reviewer workflow | Self-reported | Public writing on due-diligence product design |
+| Payments product management | Qenta; earlier Paytm, Dineout (restaurant payments) | Self-reported. [payments-reliability-lab](https://github.com/karthy1004/payments-reliability-lab) shows I understand the failure modes behind payment requirements | Product ownership, not implementation of those employers' systems | Self-reported | A sanitised case study of a shipped payments decision |
+| Responsible-sourcing due diligence product | Qenta (Responsible Gold) | Self-reported. [evidence-review-engine](https://github.com/karthy1004/evidence-review-engine) is a clean-room model of the problem class | Domain modelling: evidence, risk scoring, reviewer workflow | Self-reported | Public writing on due-diligence product design |
 | Digital assets and identity products | Qenta (G-Coin, QID) | Self-reported. Product-strategy contribution, not ownership of the underlying technology | Contributor | Self-reported | — |
 | Merchant acquisition and go-to-market | Dineout | Self-reported | — | Self-reported | A case study with sourced numbers |
 | Entrepreneurship and brand strategy | Deccan Foods (co-founder, brand strategist) | Self-reported | — | Self-reported | — |
@@ -25,12 +25,12 @@ How to read this:
 
 | Capability | Evidence | Depth shown | Confidence |
 |---|---|---|---|
-| State machines with enforced transitions | Review workflow ([`workflow.py`](https://github.com/karthikbhumireddy/evidence-review-engine/blob/main/src/evidence_review/workflow.py)), payment states ([`domain.ts`](https://github.com/karthikbhumireddy/payments-reliability-lab/blob/main/src/domain.ts)), Operon approval engine | Illegal transitions rejected and tested. Compare-and-set updates against concurrent writers | High |
-| Idempotency and exactly-once processing | Idempotency-Key semantics and webhook dedupe ([payments-reliability-lab](https://github.com/karthikbhumireddy/payments-reliability-lab)), Stripe event marker (Operon) | Replay, 409 in-flight, 422 on body mismatch, rollback-safe dedupe, all tested | High |
-| Webhook security | HMAC verification with tolerance, constant-time compare, secret rotation ([`signature.ts`](https://github.com/karthikbhumireddy/payments-reliability-lab/blob/main/src/signature.ts)) | Seven rejection cases tested | High |
-| Reconciliation | [`reconcile.ts`](https://github.com/karthikbhumireddy/payments-reliability-lab/blob/main/src/reconcile.ts) | Five exception classes, strict CSV parsing | Medium (single-currency demo data) |
-| Explainable rules engines | [`engine.py`](https://github.com/karthikbhumireddy/evidence-review-engine/blob/main/src/evidence_review/engine.py), versioned YAML rulebook | Deterministic, fingerprinted, per-question trace. 100% branch coverage on the engine | High |
-| LLM workflows with guardrails | [Extraction pipeline](https://github.com/karthikbhumireddy/evidence-review-engine/blob/main/src/evidence_review/extraction/pipeline.py) and [eval harness](https://github.com/karthikbhumireddy/evidence-review-engine/tree/main/evals) | Schema validation, grounding checks, retry with feedback, refusal routing, cost and latency per attempt | **Medium.** The harness and baseline are real. The live-model evaluation has **not been run yet** |
+| State machines with enforced transitions | Review workflow ([`workflow.py`](https://github.com/karthy1004/evidence-review-engine/blob/main/src/evidence_review/workflow.py)), payment states ([`domain.ts`](https://github.com/karthy1004/payments-reliability-lab/blob/main/src/domain.ts)), Operon approval engine | Illegal transitions rejected and tested. Compare-and-set updates against concurrent writers | High |
+| Idempotency and exactly-once processing | Idempotency-Key semantics and webhook dedupe ([payments-reliability-lab](https://github.com/karthy1004/payments-reliability-lab)), Stripe event marker (Operon) | Replay, 409 in-flight, 422 on body mismatch, rollback-safe dedupe, all tested | High |
+| Webhook security | HMAC verification with tolerance, constant-time compare, secret rotation ([`signature.ts`](https://github.com/karthy1004/payments-reliability-lab/blob/main/src/signature.ts)) | Seven rejection cases tested | High |
+| Reconciliation | [`reconcile.ts`](https://github.com/karthy1004/payments-reliability-lab/blob/main/src/reconcile.ts) | Five exception classes, strict CSV parsing | Medium (single-currency demo data) |
+| Explainable rules engines | [`engine.py`](https://github.com/karthy1004/evidence-review-engine/blob/main/src/evidence_review/engine.py), versioned YAML rulebook | Deterministic, fingerprinted, per-question trace. 100% branch coverage on the engine | High |
+| LLM workflows with guardrails | [Extraction pipeline](https://github.com/karthy1004/evidence-review-engine/blob/main/src/evidence_review/extraction/pipeline.py) and [eval harness](https://github.com/karthy1004/evidence-review-engine/tree/main/evals) | Schema validation, grounding checks, retry with feedback, refusal routing, cost and latency per attempt | **Medium.** The harness and baseline are real. The live-model evaluation has **not been run yet** |
 | Tamper-evident audit logging | Hash-chained log (Python), trigger-enforced append-only table (SQL) | Tampering by edit and by deletion detected in tests | High |
 | Automated testing | pytest (59 tests, 98% branch coverage), Vitest (59 tests, 89% branch coverage), Vitest unit tests on Operon (13) | Failure-path heavy. Operon's tests are unit tests against a Prisma fake, not database integration tests | High for logic, low for integration |
 | CI and supply-chain hygiene | GitHub Actions workflows: tests, lint, types, gitleaks, link check, Dependabot | Workflows written. Results are visible in each repo's Actions tab once published | Medium until runs are visible |

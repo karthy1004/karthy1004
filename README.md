@@ -24,9 +24,9 @@ All three are clean-room builds with synthetic data. None contains employer code
 ## How I work
 
 - **Claims need evidence.** In my due-diligence engine, an unbacked "yes" scores zero. My [skills matrix](docs/skills-evidence-matrix.md) applies the same rule to me.
-- **Design the failure path first.** A payment timeout means *unknown*, not *failed*. Getting that wrong is how customers are charged twice.
-- **AI only where it can be measured against a baseline.** The LLM step must pass schema, consistency and grounding checks, and it is scored against a regex baseline on silent errors, not accuracy.
-- **Write decisions down.** Every repo has ADRs recording what was chosen, what was rejected, and what it costs.
+- **Design the failure path first.** A payment timeout means *unknown*, not *failed*. Getting that wrong is how customers are charged twice. [ADR-1](https://github.com/karthy1004/payments-reliability-lab/blob/main/docs/decisions.md)
+- **AI only where it can be measured against a baseline.** The LLM step must pass schema, consistency and grounding checks, and it is scored against a regex baseline on silent errors, not accuracy. [Eval results](https://github.com/karthy1004/evidence-review-engine/blob/main/evals/results/baseline.md)
+- **Write decisions down.** Every repo has ADRs recording what was chosen, what was rejected, and what it costs. [Example](https://github.com/karthy1004/operon/blob/main/docs/adr/0001-collapsed-self-serve-funnel.md)
 
 ## Background
 

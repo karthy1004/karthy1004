@@ -27,10 +27,23 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v24
         with:
           globs: "**/*.md"
-      - name: Links
+      # github.com answers bots with 503 on /blob/ pages, so links into my own repos are
+      # verified through the API instead (stricter: the file must exist on main).
+      - name: Links into my own repositories point at real files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          grep -ohE 'https://github\.com/karthy1004/[^/)]+/blob/main/[^) ]+' README.md docs/*.md | sort -u |
+          while read -r url; do
+            path="${url#https://github.com/karthy1004/}"
+            repo="${path%%/blob/main/*}"; file="${path#*/blob/main/}"
+            if gh api "repos/karthy1004/$repo/contents/$file" --silent; then echo "ok      $url"
+            else echo "MISSING $url"; exit 1; fi
+          done
+      - name: All other links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-retries 4 --retry-wait-time 5 './**/*.md'
+          args: --no-progress --max-retries 4 --retry-wait-time 5 --exclude 'github\.com/karthy1004/[^/]+/blob/' './**/*.md'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,4 @@
+# Profile README intentionally uses inline HTML (<picture>, <sub>) and long table rows.
+MD013: false        # line length
+MD033: false        # inline HTML
+MD041: false        # first line need not be a heading (GitHub shows the name above the README)

@@ -1,0 +1,34 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 1 * *" # monthly: catch link rot without noisy commits
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: SVGs are generated from source (no hand edits)
+        run: |
+          python assets/build_domain_map.py
+          git diff --exit-code -- assets/
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v24
+        with:
+          globs: "**/*.md"
+      - name: Links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress './**/*.md'
+          fail: true

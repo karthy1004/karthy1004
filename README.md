@@ -17,9 +17,10 @@ Principal Product Manager at **Qenta** · previously product at **Paytm** and **
 |---|---|---|---|
 | [**evidence-review-engine**](https://github.com/karthy1004/evidence-review-engine) | Supply-chain due diligence where suppliers answer "yes" to everything | `python -m evidence_review demo`: a supplier with 12 "yes" answers scores 16/100 because its documents are expired, stale or issued to another company. 59 tests. An eval harness whose headline metric is *silent errors*. | Python · Pydantic · Claude API (optional) |
 | [**payments-reliability-lab**](https://github.com/karthy1004/payments-reliability-lab) | Payments that stay correct when the provider times out, webhooks repeat and clients double-click | `npm run demo`: one charge despite retries, a timed-out payment settled by webhook, a forged webhook rejected, and reconciliation catching an amount break. 59 tests. | TypeScript · Node 24 · Fastify · SQLite |
+| [**payee-verdict**](https://github.com/karthy1004/payee-verdict) | Payout platforms face four different payee-name checks (EU VoP, UK CoP, India, PIX) and need one defensible decision | `python -m payee_verdict demo`: "Müller GmbH" matches "MUELLER GMBH" with a full trace, a fraud-flagged PIX key is held, tampering with the evidence log is detected. 143 tests. A 181-case test set: 96.1%, zero false matches. | Python · Pydantic |
 | [**operon**](https://github.com/karthy1004/operon) | Job applications done for the candidate, with the candidate keeping a veto | Domain model for the full service lifecycle, Stripe test-mode checkout with exactly-once webhooks, approval engine with compare-and-set transitions. **Prototype, not launched.** | Next.js 16 · Prisma · Clerk · Stripe |
 
-All three are clean-room builds with synthetic data. None contains employer code, data or methodology.
+All four are clean-room builds with synthetic data. None contains employer code, data or methodology.
 
 ## How I work
 

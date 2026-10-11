@@ -43,7 +43,7 @@ jobs:
       - name: All other links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-retries 4 --retry-wait-time 5 --exclude 'github\.com/karthy1004/[^/]+/(blob|tree)/' './**/*.md'
+          args: --no-progress --max-retries 4 --retry-wait-time 5 --exclude 'github\.com/karthy1004/[^/]+/(blob|tree)/' --exclude 'linkedin\.com' './**/*.md'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

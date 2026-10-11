@@ -15,13 +15,13 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - name: SVGs are generated from source (no hand edits)
         run: |
-          python assets/build_domain_map.py
+          python assets/build_assets.py
           git diff --exit-code -- assets/
       - name: Markdown lint
         uses: DavidAnson/markdownlint-cli2-action@v24
@@ -33,17 +33,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          grep -ohE 'https://github\.com/karthy1004/[^/)]+/blob/main/[^) ]+' README.md docs/*.md | sort -u |
+          grep -ohE 'https://github\.com/karthy1004/[^/)]+/(blob|tree)/main/[^)" ]+' README.md docs/*.md | sort -u |
           while read -r url; do
             path="${url#https://github.com/karthy1004/}"
-            repo="${path%%/blob/main/*}"; file="${path#*/blob/main/}"
+            repo="${path%%/*}"; file="${path#*/main/}"
             if gh api "repos/karthy1004/$repo/contents/$file" --silent; then echo "ok      $url"
             else echo "MISSING $url"; exit 1; fi
           done
       - name: All other links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-retries 4 --retry-wait-time 5 --exclude 'github\.com/karthy1004/[^/]+/blob/' './**/*.md'
+          args: --no-progress --max-retries 4 --retry-wait-time 5 --exclude 'github\.com/karthy1004/[^/]+/(blob|tree)/' './**/*.md'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

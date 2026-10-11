@@ -28,10 +28,11 @@ HUB = ("Evidence & auditability", "every decision carries its evidence;", "every
 PROJECTS = [
     ("evidence-review-engine", "explainable due-diligence scoring"),
     ("payments-reliability-lab", "idempotency · webhooks · reconciliation"),
+    ("payee-verdict", "one payee-name decision, four schemes"),
     ("operon", "human-approved job applications"),
 ]
 
-W, H = 900, 330
+W, H = 900, 340
 FONT = "font-family=\"-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif\""
 
 
@@ -57,7 +58,7 @@ def render(c: dict[str, str]) -> str:
         f'<text x="{W - 280}" y="22" font-size="11" letter-spacing="1.5" fill="{c["muted"]}">WHAT I HAVE BUILT</text>',
     ]
     left_x, left_w, row_h, gap, top = 20, 230, 56, 18, 40
-    hub_x, hub_y, hub_w, hub_h = 330, 118, 250, 96
+    hub_x, hub_y, hub_w, hub_h = 330, 131, 250, 96
     right_x, right_w = W - 280, 260
 
     # connectors first so boxes paint over line ends
@@ -66,7 +67,7 @@ def render(c: dict[str, str]) -> str:
         parts.append(f'<path d="M{left_x + left_w} {y} C {left_x + left_w + 50} {y}, {hub_x - 50} '
                      f'{hub_y + hub_h / 2}, {hub_x} {hub_y + hub_h / 2}" fill="none" stroke="{c["line"]}" '
                      'stroke-width="1.5"/>')
-    proj_top, proj_gap = 62, 22
+    proj_top, proj_gap = 40, 18
     for i in range(len(PROJECTS)):
         y = proj_top + i * (row_h + proj_gap) + row_h / 2
         parts.append(f'<path d="M{hub_x + hub_w} {hub_y + hub_h / 2} C {hub_x + hub_w + 50} '
